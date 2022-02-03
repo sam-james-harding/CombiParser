@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
   name = 'CombiParser',
   packages = ['CombiParser'],
-  version = '0.1',
+  version = '0.2',
   license='MIT',
   description = 'A simple combinator parser.',
   author = 'Sam Harding',
