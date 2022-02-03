@@ -19,3 +19,18 @@ class ParserContainer():
 
     def __call__(self, inp: str):
         return self.__parser(inp)
+
+def parse(parser: Parser | ParserContainer, inp: str):
+    '''Applies the parser to the input, raising appropriate ValueErrors if necessary, and returning the parser output'''
+
+    result = parser(inp)
+
+    if result == None:
+        raise ValueError("Input could not be successfully parsed")
+
+    output, remaining = result
+
+    if remaining != "":
+        raise ValueError("Input could not be fully parsed")
+
+    return output
