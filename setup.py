@@ -9,7 +9,7 @@ setup(
   author = 'Sam Harding',
   author_email = 'samueljames.harding@icloud.com',
   url = 'https://github.com/sam-james-harding/CombiParser',
-  download_url = 'https://github.com/sam-james-harding/CombiParser/archive/v_01.tar.gz',
+  download_url = 'https://github.com/sam-james-harding/CombiParser/archive/v_02.tar.gz',
   keywords = ['Combinator Parser', 'Parser', 'Declarative'],
   install_requires=[],
   classifiers=[
