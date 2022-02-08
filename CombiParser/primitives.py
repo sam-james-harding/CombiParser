@@ -1,8 +1,9 @@
-from typing import Annotated
-from .globals import *
+from .parser import Parser
 from .combiners import combine, sequence
 
-def parseIf(cond: Callable[[str], bool]) -> Parser:
+ParserOutput = tuple[object, str] | None
+
+def parseIf(cond) -> Parser:
     '''Takes a function from a character to a boolean and returns a parser, which will
     parse one character that returns true when passed to that function.'''
 
@@ -14,7 +15,7 @@ def parseIf(cond: Callable[[str], bool]) -> Parser:
         else: # if the condition is failed, the parse fails
             return None
 
-    return newCharParser
+    return Parser(newCharParser)
 
 def parseNOrMore(parser: Parser, n: int) -> Parser:
     '''Takes a character parser, and a minimum number of iterations,
@@ -38,7 +39,7 @@ def parseNOrMore(parser: Parser, n: int) -> Parser:
 
         return ''.join(outputs), inp # join output chars into string and return with unconsumed input
 
-    return nOrMoreParser
+    return Parser(nOrMoreParser)
 
 some = lambda parser: parseNOrMore(parser, 1)
 '''Parses a string of one or more occurences of characters accepted by the parser argument'''

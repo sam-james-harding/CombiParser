@@ -1,5 +1,6 @@
-from typing import Callable
-from .globals import *
+from .parser import Parser
+
+ParserOutput = tuple[object, str] | None
 
 def combine(*parsers: Parser) -> Parser:
     '''Takes a series of parsers, and returns one new parser,
@@ -17,9 +18,9 @@ def combine(*parsers: Parser) -> Parser:
 
         return None
 
-    return combinedParser
+    return Parser(combinedParser)
 
-def sequence(outputFunc: Callable, *parsers: tuple[Parser, bool]) -> Parser:
+def sequence(outputFunc, *parsers: tuple[Parser, bool]) -> Parser:
     '''Takes a function and a series of tuples of Parsers and booleans.
     True marks the parser's output should be kept, False marks it should be discarded.
     All output kept will be passed to the function. The function should take the same
@@ -44,4 +45,4 @@ def sequence(outputFunc: Callable, *parsers: tuple[Parser, bool]) -> Parser:
 
         return computedOutput, inp # return the output computed by the function, and the unconsumed characters
 
-    return sequencedParser
+    return Parser(sequencedParser)
