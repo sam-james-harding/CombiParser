@@ -1,0 +1,12 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+CombiParser/__init__.py
+CombiParser/combiners.py
+CombiParser/parser.py
+CombiParser/primitives.py
+CombiParser.egg-info/PKG-INFO
+CombiParser.egg-info/SOURCES.txt
+CombiParser.egg-info/dependency_links.txt
+CombiParser.egg-info/top_level.txt

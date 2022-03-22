@@ -3,13 +3,13 @@ from distutils.core import setup
 setup(
   name = 'CombiParser',
   packages = ['CombiParser'],
-  version = '0.3',
+  version = '0.4',
   license='MIT',
   description = 'A simple combinator parser.',
   author = 'Sam Harding',
   author_email = 'samueljames.harding@icloud.com',
   url = 'https://github.com/sam-james-harding/CombiParser',
-  download_url = 'https://github.com/sam-james-harding/CombiParser/archive/refs/tags/v_03.tar.gz',
+  download_url = 'https://github.com/sam-james-harding/CombiParser/archive/refs/tags/v_04.tar.gz',
   keywords = ['Combinator Parser', 'Parser', 'Declarative'],
   install_requires=[],
   classifiers=[
