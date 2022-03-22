@@ -46,3 +46,19 @@ def sequence(outputFunc, *parsers: tuple[Parser, bool]) -> Parser:
         return computedOutput, inp # return the output computed by the function, and the unconsumed characters
 
     return Parser(sequencedParser)
+
+def union(*parsers: Parser) -> Parser:
+    '''Takes a series of parsers, and returns a parser which will only succeed
+    if all of the parsers return the same result when applied to an input string.
+    If it succeeds, it returns that same value, and if it fails, it returns None.'''
+
+    def unionParser(inp: str) -> ParserOutput:
+        outputs = [parser(inp) for parser in parsers]
+
+        for output in outputs:
+            if output != outputs[0]: # if all outputs are the same
+                return None
+
+        return outputs[0]
+
+    return Parser(unionParser)

@@ -1,5 +1,5 @@
 from .primitives import *
-from .combiners import combine, sequence
+from .combiners import combine, sequence, union
 from .parser import Parser
 
 ParserOutput = tuple[object, str] | None

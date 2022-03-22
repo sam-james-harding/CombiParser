@@ -41,6 +41,28 @@ def parseNOrMore(parser: Parser, n: int) -> Parser:
 
     return Parser(nOrMoreParser)
 
+def parseWhere(condition, parser: Parser):
+    '''
+    Pass the output of parser to the condition function. If it returns False, the parser will
+    fail. If it returns True, the parser will succeed (assuming the original parser succeeds).
+    '''
+    
+    def conditionalParser(inp: str) -> ParserOutput:
+        result = parser(inp)
+
+        if result == None:
+            return None
+
+        parserOutput, inp = result
+        
+        if condition(parserOutput):
+            return result
+        
+        else:
+            return None
+
+    return Parser(conditionalParser)
+
 some = lambda parser: parseNOrMore(parser, 1)
 '''Parses a string of one or more occurences of characters accepted by the parser argument'''
 
@@ -73,3 +95,14 @@ whitespaceParser = many(
     parseIf(lambda char: char.isspace())
 )
 '''Parses any amount of whitespace (including none)'''
+
+letter = parseIf(lambda c: c.isalpha())
+'''Parses one alphabetic character'''
+
+token = sequence(
+    lambda firstChar, string: firstChar + string,
+    (parseIf(lambda c: c.isalpha() or c == "_"), True),
+    (many(parseIf(lambda c: c.isalnum() or c == "_")), True)
+)
+'''Parses a string token, starting with a letter or underscore, with the
+rest of the token composed of letters, underscores, or numbers'''
