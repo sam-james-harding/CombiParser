@@ -1,10 +1,9 @@
 class Parser():
     '''A container for parsers, mostly to be used for when parsers must be used in another
     parser before they themselves are defined, such as in multiple recursive parsers that 
-    reference each other. Simply create a ParserContainer, passing in None to the constructor
+    reference each other. Simply create a Parser, passing in None to the constructor
     (if no parser is defined yet), or a parser. The parser can later be set with the setParser
-    method, even after another parser is defined in terms of the current one.
-    The ParserContainer object itself should be passed in place of a parser.'''
+    method, even after another parser is defined in terms of the current one.'''
 
     def __init__(self, parser=None):
         self.__parser = parser
